@@ -229,7 +229,7 @@ For this final challenge we are given an unusual combination of RSA parameters -
 
 Because the above is true, we can rearrange the equation to say that `dp * e - 1 = 0 (mod (p-1))` and, since there is a zero remainder for `mod (p-1)`, it means that `dp * e - 1` divides evenly into `p-1` pieces. We can then say that `dp * e - 1` (let's call it `mp`) is a multiple of `p-1`. (PS: this part took me the longest to understand, despite its simplicity).
 
-What does that help us with? Simply that, if we divide `mp` by some number `k` and add 1, we will eventually get `p` after tries several `k` values, since `mp / k = p - 1` as we've already established. Testing for `p` is as simple as seeing if `n` modulo `mp / k + 1` equals zero.
+What does that help us with? Simply that, if we divide `mp` by some number `k` and add 1, we will eventually get `p` after trying several `k` values, since `mp / k = p - 1` as we've already established. Testing for `p` is as simple as seeing if `n` modulo `mp / k + 1` equals zero.
 
 My script solve11.py neatly implements this in one line using Python's generator expression syntax, and the rest is a piece of cake!
 
