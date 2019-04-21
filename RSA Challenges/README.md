@@ -225,7 +225,7 @@ Result: `Only one more to go.. the force is strong with this one!`
 
 For this final challenge we are given an unusual combination of RSA parameters - `c`, `n`, `e` and `dp`. Trying all previous attacks against `n` didn't work. There must be a reason that `dp` is given, and maybe it is enough to calculate `m`.
 
-[I consulted the RFC](https://tools.ietf.org/html/rfc3447#section-2) again to understand what is happening, and to see what `dq` represents. The explanation given is that `dp * e = 1 (mod (p-1))`, which helps since `p` is in the equation as is the only unknown. Since `p-1` is modulo of the whole equation, there will be some brute forcing.
+[I consulted the RFC](https://tools.ietf.org/html/rfc3447#section-2) again to understand what is happening, and to see what `dp` represents. The explanation given is that `dp * e = 1 (mod (p-1))`, which helps since `p` is in the equation as is the only unknown. Since `p-1` is modulo of the whole equation, there will be some brute forcing.
 
 Because the above is true, we can rearrange the equation to say that `dp * e - 1 = 0 (mod (p-1))` and, since there is a zero remainder for `mod (p-1)`, it means that `dp * e - 1` divides evenly into `p-1` pieces. We can then say that `dp * e - 1` (let's call it `mp`) is a multiple of `p-1`. (PS: this part took me the longest to understand, despite its simplicity).
 
