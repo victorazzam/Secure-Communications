@@ -4,9 +4,25 @@ n = 2351669556566096325024284697509403130957234896290003282795853437424811466150
 e = 3
 ciphertext = 145069245024457407970388457302568525045688441508350620445553303097210529802020156842534271527464635050860748816803790910853366771838992303776518246009397475087259557220229739272919078824096942593663260736405547321937692016524108920147672998393440513476061602816076372323775207700936797148289812069641665092971298180210327453380160362030493
 
-# https://www.slideshare.net/ankitakapratwar/broadcasting-and-low-exponent-rsa-attack
-# https://www.mathisradical.com/finding-cube-roots-of-large-numbers.html
-# Entered n ^ (1/3) to get m
-m = 52544240263489213319521825334419419391168959946460651046808951093331580864925337576823646249202867381357303129957
+# Many attempts and OverflowErrors later, a better solution...
+def get_m(C):
+
+    # Find length of m = C ^ (1/e)
+    m = "1" + "".join("0" for x in range(len(str(C))) if pow(int("1" + "0" * x), e) < C)
+
+    # Enumerate m = C ^ (1/e)
+    for y in range(len(m)):
+        M = m[:y], m[y+1:]
+        for x in range(1, 10):
+            tmp = int(str(x).join(M))
+            if tmp ** e < C:
+                m = str(x).join(M)
+            elif tmp ** e > C:
+                m = str(x - 1).join(M)
+                break
+            else:
+                return tmp
+
+m = get_m(ciphertext)
 
 print(bytes.fromhex(hex(m)[2:]).decode())

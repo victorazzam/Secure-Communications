@@ -12,6 +12,5 @@ ciphertext = 1388762168166138453533502616535682311951662267796048439821372408514
 m1 = pow(ciphertext, dp, p)
 m2 = pow(ciphertext, dq, q)
 h = qinv * (m1 - m2) % p
-
-if m1 == m2:
-	print(bytes.fromhex(hex(m1)[2:]).decode())
+m = m2 + h * q
+print(bytes.fromhex(hex(m1)[2:]).decode())
