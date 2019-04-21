@@ -13,13 +13,14 @@ vendors = {
     "Visa" : ([4], [13,16,19])
 }
 
-usage = """\nUsage: ccverify <mode> <arg>\nModes:\n
+usage = """\nUsage: ccverify <mode> <arg>\n\nModes:
  verify — check if a credit card number is valid
  vendor — print the vendor of a credit card number
  checksum — recover checksum from the first portion of a credit card number
- generate — get a random credit card number for a given vendor\n
+ generate — get a random valid credit card number for a given vendor\n
 Vendors:\n """ + "\n ".join(vendors) + "\n"
 
+filt = lambda v: next(x for x in vendors if v.lower() == x.lower())
 luhn = lambda s: sum(int(i) if y % 2 else int(i) * 2 - 9 if int(i) * 2 > 9 else int(i) * 2 for y, i in enumerate(s[-2::-1]))
 verify = lambda cc: ("Invalid", "Valid")[not (luhn(cc) + int(cc[-1])) % 10]
 check = lambda cc: abs(luhn(cc) % 10 - 10) * (luhn(cc) % 10 > 0)
@@ -34,16 +35,16 @@ def vendor(cc):
 def generate(v):
     from random import choice
     try:
-        cc = str(choice(vendors[v][0]))
-        for i in range(choice(vendors[v][1]) - len(cc)):
+        cc = str(choice(vendors[filt(v)][0]))
+        for i in range(choice(vendors[filt(v)][1]) - len(cc)):
             cc += str(choice(range(10)))
         return cc[:-1] + str(check(cc))
-    except KeyError:
-        return f"Vendor '{v}' not recognised."
+    except (KeyError, StopIteration):
+        return f"Vendor '{v}' is not recognised."
 
 try:
-    exec(f"print({argv[1]}('{argv[2]}'))")
-except (NameError, IndexError):
+    print(eval(argv[1])(argv[2]))
+except (NameError, ValueError, IndexError):
     exit(usage)
 except (KeyboardInterrupt, EOFError):
     print()
