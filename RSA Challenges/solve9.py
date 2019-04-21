@@ -27,7 +27,7 @@ def get_m(C):
     m = "1" + "".join("0" for x in range(len(str(C))) if pow(int("1" + "0" * x), e) < C)
 
     # Enumerate m = C ^ (1/e)
-    for y in range(1, len(m)):
+    for y in range(len(m)):
         M = m[:y], m[y+1:]
         for x in range(1, 10):
             tmp = int(str(x).join(M))
