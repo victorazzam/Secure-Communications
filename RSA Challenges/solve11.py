@@ -14,7 +14,7 @@ c = 1219725856885325354759704058179994604158598660354818638342877314370044308455
 # dp * e = 1 mod p-1
 # dp * e - 1 = multiple of p-1
 mp = dp * e - 1
-p = next(mp // i + 1 for i in range(2, 1000000) if not n % (mp // i + 1))
+p = next(mp // i + 1 for i in range(2, 1000000) if n % (mp // i + 1) == 0)
 q = n // p
 d = gmpy2.invert(e, (p-1) * (q-1))
 m = pow(c, d, n)
