@@ -227,7 +227,7 @@ For this final challenge we are given an unusual combination of RSA parameters -
 
 [I consulted the RFC](https://tools.ietf.org/html/rfc3447#section-2) again to understand what is happening, and to see what `dp` represents. The explanation given is that `dp * e = 1 (mod (p-1))`, which helps since `p` is in the equation as is the only unknown. Since `p-1` is modulo of the whole equation, there will be some brute forcing.
 
-Because the above is true, we can rearrange the equation to say that `dp * e - 1 = 0 (mod (p-1))` and, since there is a zero remainder for `mod (p-1)`, it means that `dp * e - 1` divides evenly into `p-1` pieces. We can then say that `dp * e - 1` (let's call it `mp`) is a multiple of `p-1`. (PS: this part took me the longest to understand, despite its simplicity).
+Because the above is true, we can rearrange the equation to say that `dp * e - 1 = 0 (mod (p-1))` and, since there is a zero remainder for `mod (p-1)`, it means that `dp * e - 1` divides evenly into `p-1` pieces. We can then say that `dp * e - 1` (let's call it `mp`) is a multiple of `p-1`. (PS: this part took me the longest to understand, despite its simplicity.)
 
 What does that help us with? Simply that, if we divide `mp` by some number `k` and add 1, we will eventually get `p` after trying several `k` values, since `mp / k = p - 1` as we've already established. Testing for `p` is as simple as seeing if `n` modulo `mp / k + 1` equals zero.
 
