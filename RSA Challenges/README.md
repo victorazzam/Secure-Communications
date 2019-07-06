@@ -151,7 +151,7 @@ We are given the same setup as in the previous level - `n`, `e` and `c`. Trying 
 
 We know that to encrypt a message we simply raise it to the power of `e` and then modulo `n`, but if the message was never large enough to begin with to require a modulo (a safe assumption, based on the sizes of previous `m` values), then the ciphertext itself is `m` to the power of `e`. So calculating `m` would simply involve getting the cube root of `c`. But `c` is so large, how would we do that?
 
-Well, I cheated... sort of. I didn't use tradition ways of working with numbers, but instead I manipulated strings and used Python's versatility to help recover the `e`'th root of a number. The function in question - `get_m()` - was born in solve9.py and made its way to solve8.py in no time.
+Well, I cheated... sort of. I didn't use traditional ways of working with numbers, but instead I manipulated strings and used Python's versatility to help recover the `e`'th root of a number. The function in question - `get_m()` - was born in solve9.py and made its way to solve8.py in no time.
 
 To briefly describe its functionality, here is what it does:
 
