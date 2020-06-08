@@ -6,7 +6,7 @@ Complete the challenges on https://zerodays.ctfd.io and give some detail on each
 
 ### Background
 
-These challenges test a person's understanding of the RSA cryptosystem. The letters RSA stand for Rivest–Shamir–Adleman, the authors of the encryption scheme. One of its key features is that it is an assymetric, public key cryptosystem. It has two keys, a public and a private key, where only one of them can decrypt a message encrypted by the other.
+These challenges test a person's understanding of the RSA cryptosystem. The letters RSA stand for Rivest–Shamir–Adleman, the authors of the encryption scheme. One of its key features is that it is an asymmetric, public key cryptosystem. It has two keys, a public and a private key, where only one of them can decrypt a message encrypted by the other.
 
 ---
 
