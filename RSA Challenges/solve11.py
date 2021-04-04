@@ -13,6 +13,7 @@ c = 1219725856885325354759704058179994604158598660354818638342877314370044308455
 # dp = 1/e mod p-1
 # dp * e = 1 mod p-1
 # dp * e - 1 = multiple of p-1
+# Also: p = gcd(pow(2, e*dp, n) - 2, n)
 mp = dp * e - 1
 p = next(mp // i + 1 for i in range(2, 1000000) if n % (mp // i + 1) == 0)
 q = n // p
